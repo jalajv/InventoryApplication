@@ -1,0 +1,12 @@
+CREATE DATABASE dbShopBridgeInventory
+GO
+USE dbShopBridgeInventory
+GO
+CREATE TABLE ItemList(id INT PRIMARY KEY IDENTITY(1,1),Name VARCHAR(MAX),[Description] VARCHAR(MAX),Price DECIMAL(20,4),ImagePath VARCHAR(MAX))
+GO
+INSERT INTO ItemList VALUES('Pencil','Nataraj Pencils',9.50,'~/')
+INSERT INTO ItemList VALUES('Rubber','Nataraj Rubber',5,'~/')
+GO
+SELECT * FROM ItemList
+
+

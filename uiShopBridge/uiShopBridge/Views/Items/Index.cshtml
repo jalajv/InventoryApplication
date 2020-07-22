@@ -1,0 +1,123 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div> 
+        <h2><center>ShopBridge Inventory</center></h2>
+        <div class="container">
+            <div id="fetch_results">
+                <h3 style="margin-left:20px">Add Items</h3><br />
+                
+                    <div class="row">
+                     <div class="col-md-12">
+                         <div class="col-md-4">
+                             <label>Name</label>
+                             <input type="text" id="txtName" class="form-control" />
+                         </div>
+                         <div class="col-md-4"></div>
+                         <div class="col-md-4">
+                             <label>Image</label>
+                             <input type="file" class="form-control" id="fileImage" onchange="ShowPreview(this)" accept="image/jpeg,image/png,image/jpg" />
+                         </div>  
+                     </div>   
+                    </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <label>Description</label>
+                            <input type="text" id="txtDesc" class="form-control" />
+                        </div>
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            <img src="" id="impPrev" height="100px" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                 <div class="col-md-12">
+                     <div class="col-md-4">
+                         <label>Price</label>
+                         <input type="text" id="txtPrice" class="form-control" />
+                     </div>
+                     <div class="col-md-4"></div>
+                     <div class="col-md-4">
+                        
+                     </div>
+                 </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" id="btnSave" value="Save Items" class="pull-right btn btn-primary" onclick="addItems()">Save Items</button>
+                    </div>
+                </div>
+                @*<div class="col-md-12">
+                    <div class="col-md-6">
+
+                        <table id="tblAddItems">
+                            <tr>
+                                <th>Name</th>
+                                <td><input type="text" id="txtName" class="form-control" /></td>
+                            </tr>
+                            <tr>
+                                <th>Description</th>
+                                <td><input type="text" id="txtDesc" class="form-control" /></td>
+                            </tr>
+                            <tr>
+                                <th>Price</th>
+                                <td><input type="text" id="txtPrice" class="form-control" /></td>
+                            </tr>
+
+                        </table><br />
+                        <button type="button" id="btnSave" style="margin-left:220px;" value="Save" class="btn btn-primary" onclick="addItems()">Save</button>
+                    </div>
+                    <div class="col-md-6">
+                        <table>
+                            <tr>
+                                <th>Image</th>
+                                <td><input type="file" class="form-control" id="fileImage" onchange="ShowPreview(this)" accept="image/jpeg,image/png,image/jpg" /></td>
+                            </tr>
+                        </table>
+                        <img src="" id="impPrev" height="100px" />
+                    </div>
+                </div>*@
+                <br />
+            </div>
+        </div><br /><br /><br />
+        <div class="container">
+            <table class="table table-bordered table-hover table-responsive table-condensed">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Image</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="bdyItems"></tbody>
+            </table>
+        </div>
+    </div>
+    
+</body>
+</html>
+<script>
+    function getDetails(id) {
+        var url = '@Url.Action("ItemDetails", "Items")?juj=' + id;
+        window.location.href = url;
+    }
+</script>
+<script src="~/Scripts/InventoryOperations.js"></script>
