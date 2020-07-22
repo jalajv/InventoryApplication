@@ -69,6 +69,5 @@ E:\git\InventoryApplication\apisShopBridge\apisShopBridge\bin\System.Web.WebPage
 E:\git\InventoryApplication\apisShopBridge\apisShopBridge\bin\System.Web.WebPages.Deployment.xml
 E:\git\InventoryApplication\apisShopBridge\apisShopBridge\bin\System.Web.WebPages.Razor.xml
 E:\git\InventoryApplication\apisShopBridge\apisShopBridge\bin\Antlr3.Runtime.pdb
-E:\git\InventoryApplication\apisShopBridge\apisShopBridge\obj\Debug\apisShopBridgeInventory.csprojResolveAssemblyReference.cache
 E:\git\InventoryApplication\apisShopBridge\apisShopBridge\obj\Debug\apisShopBridge.dll
 E:\git\InventoryApplication\apisShopBridge\apisShopBridge\obj\Debug\apisShopBridge.pdb
