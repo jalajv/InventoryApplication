@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
@@ -15,62 +14,67 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
-    <div> 
+    <div>
         <div class="container">
             <h2><center>Item Details</center></h2><br /><br />
-          
-                   <div class="row">
-                       <div class="col-md-1">
-                           <label>Name:</label>
-                       </div>
-                       <div class="col-md-4">
-                           <p id="lblName" class=""></p>
-                       </div>
-                   </div>
-             <div class="row">
-                 <div class="col-md-1">
-                     <label>Description:</label>
-                 </div>
-                 <div class="col-md-4">
-                     <p id="lblDesc" class=""></p>
-                 </div>
-             </div>
-                 <div class="row" >
-                     <div class="col-md-1">
-                         <label>Price:</label>
-                     </div>
-                     <div class="col-md-4">
-                         <p id="lblPrice" class=""></p>
-                     </div>
-                 </div>
-                <div class="row">
-                    <div class="col-md-1">
-                        <label>Image:</label>
-                    </div>
-                    <div class="col-md-4">
-                        <img src='' id="imgThumbnail" height="100px" />
-                    </div>
+
+            <div class="row">
+                <div class="col-md-1">
+                    <label>Name:</label>
                 </div>
+                <div class="col-md-4">
+                    <p id="lblName" class=""></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">
+                    <label>Description:</label>
+                </div>
+                <div class="col-md-4">
+                    <p id="lblDesc" class=""></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">
+                    <label>Price:</label>
+                </div>
+                <div class="col-md-4">
+                    <p id="lblPrice" class=""></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">
+                    <label>Image:</label>
+                </div>
+                <div class="col-md-4">
+                    <img src='' id="imgThumbnail" height="100px" />
+                </div>
+            </div>
             <br />
-          <div class="row">
-              <div class="col-md-3">
-                  <input type="button" value="Back" class="pull-right btn btn-success" onclick="back()" />
-              </div>
-          </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <input type="button" value="Back" class="pull-right btn btn-success" onclick="btnBack()" />
+                </div>
+            </div>
         </div>
     </div>
 </body>
 </html>
 <script>
+    
     $(document).ready(function () {
-        debugger;
+        getDetails();
+    });
+
+    /* function to get item details */
+    function getDetails() {
+        var apiURL = "http://localhost:2073/api/InventoryOperations/";
         var url = window.location.href;
         var split = url.split("juj=");
         var id = split[1];
-        // alert(currentURL);
         $.ajax({
             type: "GET",
-            url: "http://localhost:2073/api/InventoryOperations/"+id,
+            url: apiURL + id,
             contentType: "application/json;charset=utf-8",
             datatType: "json",
             success: function (data) {
@@ -81,12 +85,14 @@
                 $("#imgThumbnail").attr('src', data.ImagePath);
             },
             error: function (data) {
-
+                console.log("Error:" + data + " in ItemDetails get method")
+                alert("Error:" + data);
             }
         })
+    }
 
-    });
-    function back() {
+    /* function to get back to the index page */
+    function btnBack() {
         var url = '@Url.Action("Index", "Items")';
         window.location.href = url;
     }
