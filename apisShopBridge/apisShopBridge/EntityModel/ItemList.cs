@@ -11,7 +11,6 @@ namespace apisShopBridge.EntityModel
 {
     using System;
     using System.Collections.Generic;
-    using System.Web;
     
     public partial class ItemList
     {
@@ -20,6 +19,5 @@ namespace apisShopBridge.EntityModel
         public string Description { get; set; }
         public Nullable<decimal> Price { get; set; }
         public string ImagePath { get; set; }
- 
     }
 }

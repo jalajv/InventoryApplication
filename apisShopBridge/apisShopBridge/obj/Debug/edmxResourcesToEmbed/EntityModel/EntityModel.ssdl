@@ -8,7 +8,7 @@
     <Property Name="Name" Type="varchar(max)" />
     <Property Name="Description" Type="varchar(max)" />
     <Property Name="Price" Type="decimal" Precision="20" Scale="4" />
-    <Property Name="ImagePath" Type="varchar(max)" />
+    <Property Name="ImagePath" Type="nvarchar(max)" />
   </EntityType>
   <EntityContainer Name="dbShopBridgeInventoryModelStoreContainer">
     <EntitySet Name="ItemList" EntityType="Self.ItemList" Schema="dbo" store:Type="Tables" />

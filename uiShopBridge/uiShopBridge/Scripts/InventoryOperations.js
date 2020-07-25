@@ -18,18 +18,6 @@ function addItems() {
     if (fileValue.length > 0 && fileValue != "") {
         filehash = fileValue;
     }
-
-    //var photo = document.getElementById("fileImage");
-    //var file = photo.files[0];
-    //filename = (file.name);
-    //filesize = (file.size);..
-    //var tdate = new Date();
-    //var mark = tdate.getFullYear() +""+ (tdate.getMonth()+1) +""+ tdate.getDay() +""+ tdate.getHours() +""+ tdate.getMinutes() +""+ tdate.getSeconds() +""+ tdate.getMilliseconds();
-    //alert(filename + mark);
-
-    //var fr = new FileReader;
-    // alert(fr.readAsDataURL(file));
-
     
     if (name == "" || name.length == 0) {
         alert("Required Field: Name");
@@ -53,7 +41,7 @@ function addItems() {
         contentType: "application/json;charset=utf-8",
         datatType: "json",
         success: function (data) {
-            if (data == true) {
+            if (data.id > 0) {
                 alert("Item added successfully");
                 $("#impPrev").attr('src', '');
                 $('#fetch_results').find(':input').val('');
@@ -69,71 +57,6 @@ function addItems() {
         }
     })
 }
-
-
-
-/*
-function addItems() {
-    debugger;
-    var name = $("#txtName").val();
-    var description = $("#txtDesc").val();
-    var price = $("#txtPrice").val();
-    var image = $("#fileImage").prop('files')[0];
-
-    //var photo = document.getElementById("fileImage");
-    //const preview = document.getElementById('#impPrev2');
-    //var file = photo.files[0];
-    //filename = (file.name);
-    //filesize = (file.size);
-    //var tdate = new Date();
-    //var mark = tdate.getFullYear() +""+ (tdate.getMonth()+1) +""+ tdate.getDay() +""+ tdate.getHours() +""+ tdate.getMinutes() +""+ tdate.getSeconds() +""+ tdate.getMilliseconds();
-   // alert(filename + mark);
-    // return false;
-
-    if (name == "" || name.length == 0) {
-        alert("Required Field: Name");
-        return;
-    }
-    if (price == "" || price.length == 0) {
-        alert("Required Field: Price");
-        return;
-    }
-
-    //var data = {};
-    //data.Name = name;
-    //data.Description = description;
-    //data.Price = price;
-    //data.ImagePath = image;
-
-    var data = new FormData();
-    data.append('Name', name);
-    data.append('Description', description);
-    data.append('Price', price);
-    data.append('ImagePath', image);
-   
-    $.ajax({
-        type: "POST",
-        url: "http://localhost:2073/api/InventoryOperations/",
-        processData: false,
-        contentType: false,
-        data: (data),
-        success: function (data) {
-            if (data == true) {
-                alert("Item added successfully");
-                $('#fetch_results').find(':input').val('');
-            }
-            else {
-                alert("Aborted");
-            }
-            getItems();
-        },
-        error: function (err) {
-            alert("Error:" + err);
-            console.log("Error:" + err + " in addItems() method");
-        }
-    })
-} */
-
 
 /* Function to get the list of items */
 function getItems() {
@@ -182,7 +105,7 @@ function deleteItems(id) {
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (data) {
-                if (data == true) {
+                if (data.id > 0) {
                     alert("Item deleted successfully");
                     getItems();
                 }

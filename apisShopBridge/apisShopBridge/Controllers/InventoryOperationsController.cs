@@ -13,23 +13,38 @@ using apisShopBridge.EntityModel;
 using System.Threading.Tasks;
 using System.Web;
 using System.IO;
+using apisShopBridge.Models;
 
 namespace apisShopBridge.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class InventoryOperationsController : ApiController
     {
-        private dbShopBridgeInventoryEntities db = new dbShopBridgeInventoryEntities();
+        private IAppContext db = new dbShopBridgeInventoryEntities();
+
+        public InventoryOperationsController() 
+        {
+            
+        }
+        public InventoryOperationsController(IAppContext context)
+        {
+            db = context;
+        }
+
+        #region GetItemLists
 
         // GET api/InventoryOperations
-        // Returns the list of all the items
+        /* Returns the list of all the items */
         public IQueryable<ItemList> GetItemLists()
         {
             return db.ItemLists;
         }
 
+        #endregion
+
+        #region GetItemList(int id)
         // GET api/InventoryOperations/5
-        // Get specific item details based on param id
+        /* Get specific item details based on param id */ 
         [ResponseType(typeof(ItemList))]
         public IHttpActionResult GetItemList(int id)
         {
@@ -42,8 +57,11 @@ namespace apisShopBridge.Controllers
             return Ok(itemlist);
         }
 
+        #endregion
+
+        #region PostItemList
         // POST api/InventoryOperations
-        // Save the Item details returns true if item is successfully inserted else false
+        /* Save the Item details returns true if item is successfully inserted else false */ 
         [ResponseType(typeof(ItemList))]
         public IHttpActionResult PostItemList(ItemList itemlist)
         {
@@ -59,12 +77,16 @@ namespace apisShopBridge.Controllers
                 db.SaveChanges();
                 result = true;
             }
-            return CreatedAtRoute("DefaultApi", new { }, result);
+            return CreatedAtRoute("DefaultApi", new { id = itemlist.id }, itemlist);
+            
         }
 
+        #endregion PostItemList
+
+        #region DeleteItemList
 
         // DELETE api/InventoryOperations/5
-        // Remove an item from table
+        /* Remove an item from db table */ 
         [ResponseType(typeof(ItemList))]
         public IHttpActionResult DeleteItemList(int id)
         {
@@ -81,10 +103,13 @@ namespace apisShopBridge.Controllers
                 db.SaveChanges();
                 result = true;
             }
-            return Ok(result);
+            return Ok(itemlist);
         }
 
-        // To Dispose DB connection
+        #endregion
+
+        #region Dispose DB
+        /* To Dispose DB connection */ 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -93,6 +118,8 @@ namespace apisShopBridge.Controllers
             }
             base.Dispose(disposing);
         }
+
+        #endregion
 
     }
 }

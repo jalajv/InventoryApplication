@@ -61,14 +61,14 @@
 </body>
 </html>
 <script>
-    
+
     $(document).ready(function () {
         getDetails();
     });
 
+    var apiURL = "http://localhost:2073/api/InventoryOperations/";
     /* function to get item details */
     function getDetails() {
-        var apiURL = "http://localhost:2073/api/InventoryOperations/";
         var url = window.location.href;
         var split = url.split("juj=");
         var id = split[1];
